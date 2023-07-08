@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import {Button, Card, Form} from 'react-bootstrap';
+import '../App.css';
 
 export const IssuesForm = () => {
   const [equipment, setEquipment] = useState('');
@@ -44,8 +46,8 @@ export const IssuesForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
+    <form onSubmit={handleSubmit} style={{margin:"20px"}}>
+        <label className="jobCardLabel">
         Equipment:
         <input
           type="text"
@@ -53,8 +55,8 @@ export const IssuesForm = () => {
           onChange={(e) => setEquipment(e.target.value)}
         />
       </label>
-      <br />
-      <label>
+
+      <label className="jobCardLabel">
         Serial Number:
         <input
           type="text"
@@ -62,8 +64,8 @@ export const IssuesForm = () => {
           onChange={(e) => setSerialNumber(e.target.value)}
         />
       </label>
-      <br />
-      <label>
+
+      <label className="jobCardLabel">
         Issue:
         <input
           type="text"
@@ -71,8 +73,7 @@ export const IssuesForm = () => {
           onChange={(e) => setIssue(e.target.value)}
         />
       </label>
-      <br />
-      <button type="submit">Update Issue</button>
+      <Button variant="primary" type="submit">Create Issue</Button>
     </form>
   );
 };

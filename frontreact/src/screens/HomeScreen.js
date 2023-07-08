@@ -10,15 +10,17 @@ import {JobCardUpload} from '../components/JobCardUpload.js'
 
 import {JobCards} from '../components/JobCards.js'
 
-import {Dashboard} from '../components/dashboard.js';
+import {Dashboard} from './dashboard.js';
+import {EquipmentSearch} from '../components/EqptSearch.js';
 
 export const HomeScreen = () => {
 
   return (
     <Container className="text-center">
       <div>
-        <Dashboard></Dashboard>
-        {/* <JobCards></JobCards> */}
+        
+        <EquipmentSearch></EquipmentSearch>
+        <JobCards></JobCards>
       </div>
     </Container>
   );
