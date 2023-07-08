@@ -10,3 +10,15 @@ class IssueSerializer(serializers.ModelSerializer):
     class Meta:
         model = Issues
         fields = '__all__'
+
+class EquipmentListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Equipments
+        fields = '__all__'        
+
+        
+
+class InstitutionListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Institution
+        fields = '__all__'               

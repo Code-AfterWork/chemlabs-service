@@ -1,17 +1,41 @@
 from rest_framework import generics
-from .models import jobCards, Issues
-from .serializers import JobCardSerializer, IssueSerializer
+from .models import jobCards, Issues, Equipments,Institution
+from .serializers import JobCardSerializer, IssueSerializer, EquipmentListSerializer, InstitutionListSerializer
 from core.permissions import IsAuthorOrReadOnly
 from rest_framework.permissions import AllowAny, IsAuthenticated
 
-# from django.contrib.auth.decorators import user_passes_test
+# API to get list of institutions and edit institutions
+class InstitutionList(generics.ListCreateAPIView):
+    queryset = Institution.objects.all()
+    serializer_class = InstitutionListSerializer
+    # permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
+
+class InstitutionDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Institution.objects.all()
+    serializer_class = InstitutionListSerializer
+    # permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
 
+# API to get list of equipments and edit equipments
+class EquipmentList(generics.ListCreateAPIView):
+    queryset = Equipments.objects.all()
+    serializer_class = EquipmentListSerializer
+    # permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
+
+class EquipmentDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Equipments.objects.all()
+    serializer_class = EquipmentListSerializer
+    # permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
+
+# List to get and edit job cards
 class JobCardListCreateView(generics.ListCreateAPIView):
     queryset = jobCards.objects.all()
     serializer_class = JobCardSerializer
     permission_classes = [IsAuthenticated, IsAuthorOrReadOnly]
-    # permission_classes = [AllowAny]
 
     def create(self, request, *args, **kwargs):
         request.data['created_by'] = request.user.id
@@ -21,14 +45,12 @@ class JobCardDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = jobCards.objects.all()
     serializer_class = JobCardSerializer
     permission_classes = [IsAuthenticated, IsAuthorOrReadOnly]
-    # permission_classes = [AllowAny]
 
-# @user_passes_test(lambda user: user.groups.filter(name='clients').exists())
+# API to get and edit Issues
 class IssueListCreateView(generics.ListCreateAPIView):
     queryset = Issues.objects.all()
     serializer_class = IssueSerializer
     permission_classes = [IsAuthenticated, IsAuthorOrReadOnly]
-    # permission_classes = [AllowAny]
 
     def create(self, request, *args, **kwargs):
         request.data['created_by'] = request.user.id
@@ -39,23 +61,3 @@ class IssueDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = IssueSerializer
     permission_classes = [IsAuthenticated, IsAuthorOrReadOnly]    
 
-
-# from rest_framework import generics, permissions
-# from rest_framework_jwt.authentication import JSONWebTokenAuthentication
-# from .models import jobCards
-# from .serializers import JobCardSerializer
-
-# class JobCardListCreateView(generics.ListCreateAPIView):
-#     queryset = jobCards.objects.all()
-#     serializer_class = JobCardSerializer
-#     authentication_classes = [JSONWebTokenAuthentication]
-#     permission_classes = [permissions.IsAuthenticated]
-
-#     def perform_create(self, serializer):
-#         serializer.save()  # Optional: If you want to perform additional actions on create
-
-# class JobCardDetailView(generics.RetrieveUpdateDestroyAPIView):
-#     queryset = jobCards.objects.all()
-#     serializer_class = JobCardSerializer
-#     authentication_classes = [JSONWebTokenAuthentication]
-#     permission_classes = [permissions.IsAuthenticated]

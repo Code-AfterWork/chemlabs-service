@@ -6,10 +6,6 @@ import os
 from django.conf import settings
 from django.template.defaultfilters import slugify
 
-
-
-
-
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password, **extra_fields):
         if not email:
@@ -46,7 +42,6 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.email    
     
-
 
 # user profiles
 def get_image_filename(instance, filename):

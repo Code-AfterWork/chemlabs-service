@@ -20,13 +20,20 @@ class OAuth2Application(AbstractApplication):
 
 
 class Equipments(models.Model):
-    id = models.CharField(max_length=30) #maps id from sage 300
+    # id = models.CharField(max_length=30) #maps id from sage 300
     region = models.CharField(max_length=30)
     inst_name = models.CharField(max_length=30)
     equipment = models.CharField(max_length=30)
     serial_number = models.CharField(max_length=30, primary_key=True)
     install_date = models.DateField()
-    status = models.CharField(max_length=30)
+    contract_end = models.DateField()
+    status = models.BooleanField()
+    first_serv = models.DateField()
+    validation = models.BooleanField()
+    second_serv = models.DateField()
+    validation = models.BooleanField()
+    contract_type = models.CharField(max_length=30)
+
     
     def __str__(self):
         return self.serial_number
@@ -96,15 +103,14 @@ class GeneratedJobCards(models.Model):
 # clients are the only users who can access this model
 class Issues(models.Model):
     equipment = models.CharField(max_length=30)
+    title=models.CharField(max_length=30)
+    status= models.CharField(max_length=30)
     serial_number = models.ForeignKey(Equipments, on_delete=models.CASCADE)
-    issue = models.CharField(max_length=30)
-    #data on who created the jobcard
-    created_by = models.ForeignKey(
-        CustomUser,
-        related_name="Facility",
-        null=True,
-        on_delete=models.SET_NULL,
-    )
+    description = models.CharField(max_length=30)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    assigned_to = models.ForeignKey(Employees, on_delete=models.CASCADE, related_name='completed_issues', null=True, blank=True)
+    completed = models.BooleanField(default=False)
+
 
 
 
