@@ -18,7 +18,7 @@ export function Navigation({ isAuthenticated }) {
         
 
         <Nav className="me-auto">
-          {isAuthenticated && <Nav.Link href="/issues">Issues</Nav.Link>}
+          {isAuthenticated && <Nav.Link href="/tickets">Tickets</Nav.Link>}
         </Nav>
 
         <Nav>
@@ -74,7 +74,7 @@ export function Navigation({ isAuthenticated }) {
 //           </Nav>
 
 //           <Nav className="me-auto">
-//             {isAuth ?  <Nav.Link href="/issues">Issues</Nav.Link>
+//             {isAuth ?  <Nav.Link href="/tickets">tickets</Nav.Link>
 //             :null}
 //           </Nav>
           

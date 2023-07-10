@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import {Button, Card, Form} from 'react-bootstrap';
 import '../App.css';
 
-export const IssuesForm = () => {
+export const TicketsForm = () => {
   const [equipment, setEquipment] = useState('');
   const [serialNumber, setSerialNumber] = useState('');
-  const [issue, setIssue] = useState('');
+  const [ticket, setTicket] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,12 +18,12 @@ export const IssuesForm = () => {
     const payload = {
       equipment,
       'serial_number': serialNumber,
-      issue,
+      ticket,
     };
 
     // Send the update request with authentication tokens in the headers
     try {
-      const response = await fetch('http://127.0.0.1:8000/issues/', {
+      const response = await fetch('http://127.0.0.1:8000/tickets/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -35,13 +35,13 @@ export const IssuesForm = () => {
 
       if (response.ok) {
         // Handle success
-        console.log('Issue updated successfully');
+        console.log('ticket updated successfully');
       } else {
         // Handle error
-        console.error('Failed to update issue');
+        console.error('Failed to update ticket');
       }
     } catch (error) {
-      console.error('Error occurred while updating issue', error);
+      console.error('Error occurred while updating ticket', error);
     }
   };
 
@@ -66,14 +66,14 @@ export const IssuesForm = () => {
       </label>
 
       <label className="jobCardLabel">
-        Issue:
+        ticket:
         <input
           type="text"
-          value={issue}
-          onChange={(e) => setIssue(e.target.value)}
+          value={ticket}
+          onChange={(e) => setTicket(e.target.value)}
         />
       </label>
-      <Button variant="primary" type="submit">Create Issue</Button>
+      <Button variant="primary" type="submit">Create ticket</Button>
     </form>
   );
 };

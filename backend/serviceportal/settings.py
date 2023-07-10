@@ -34,6 +34,8 @@ INSTALLED_APPS = [
     'oauth2_provider',
     'users',
     'rest_framework_simplejwt.token_blacklist',
+    'employees',
+    "clients",
 
 ]
 

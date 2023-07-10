@@ -9,7 +9,7 @@ import { Footer } from './components/Footer.jsx';
 import { Dashboard } from './screens/dashboard.js';
 import { JobCardUpload } from './components/JobCardUpload';
 import { JobCards } from './components/JobCards';
-import { IssuesForm } from './components/Issues';
+import { ticketsForm } from './components/Tickets';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { fas } from '@fortawesome/free-solid-svg-icons';
@@ -50,8 +50,8 @@ function App() {
             element={isAuthenticated ? <Logout /> : <Navigate to="/login" />}
             />
             <Route
-            path="/issues"
-            element={isAuthenticated ? <IssuesForm /> : <Navigate to="/login" />}
+            path="/tickets"
+            element={isAuthenticated ? <ticketsForm /> : <Navigate to="/login" />}
             />
         </Routes>
         <Footer />
@@ -75,7 +75,7 @@ library.add(fab, fas, far);
 // import { Dashboard } from './screens/dashboard.js';
 // import { JobCardUpload } from './components/JobCardUpload'
 // import { JobCards } from './components/JobCards'
-// import { IssuesForm } from './components/Issues'
+// import { ticketsForm } from './components/tickets'
 
 // import { library } from '@fortawesome/fontawesome-svg-core'
 // import React, { isAuth} from 'react';
@@ -96,7 +96,7 @@ library.add(fab, fas, far);
 //                 <Route path="/register" element={<RegisterUser/>}/>
 //                 <Route path="/login" element={<Login/>}/>
 //                 <Route path="/logout" element={<Logout/>}/>
-//                 <Route path="/issues" element={<IssuesForm/>}/>
+//                 <Route path="/tickets" element={<ticketsForm/>}/>
 //             </Routes>
 //         <Footer></Footer>    
 //     </BrowserRouter>;
