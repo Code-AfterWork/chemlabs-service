@@ -32,6 +32,8 @@ How to authorize a particular group
 ```
 from rest_framework.permissions import BasePermission, IsAdminUser
 
+## This will authorize users in employee group and admin ONLY 
+
 class IsAdminOrEmployee(BasePermission):
     def has_permission(self, request, view):
         if request.user.is_authenticated:

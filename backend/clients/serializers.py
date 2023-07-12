@@ -2,6 +2,7 @@ from clients.models import Ticket
 from rest_framework import serializers
 
 class  TicketCreateSerializer(serializers.ModelSerializer):
+    status = serializers.CharField(read_only=True)
     class Meta:
         model = Ticket
-        fields = "serial_number","equipment", "title","description", "created_by"
+        fields = '__all__'

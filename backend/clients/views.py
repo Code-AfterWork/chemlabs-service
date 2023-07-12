@@ -7,7 +7,7 @@ from .serializers import TicketCreateSerializer
 # API to get and edit tickets for clients
 # this endpoint is only visible to clients and ticket creator
 class  TicketListCreateView(generics.ListCreateAPIView):
-    queryset = Ticket.objects.values("serial_number","equipment", "title","description","created_by")
+    queryset = Ticket.objects.all()
     serializer_class =  TicketCreateSerializer
 
     
@@ -15,5 +15,5 @@ class  TicketListCreateView(generics.ListCreateAPIView):
         serializer.save(created_by=self.request.user)
     
 class  TicketDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Ticket.objects.values("serial_number","equipment", "title","description","created_by")
+    queryset = Ticket.objects.all()
     serializer_class =  TicketCreateSerializer

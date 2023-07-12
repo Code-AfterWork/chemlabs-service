@@ -6,7 +6,7 @@ from django.conf import settings
 
 class Ticket(models.Model):
     serial_number = models.OneToOneField(Equipment, on_delete=models.CASCADE)
-    equipment = models.CharField(max_length=30)
+    equipment = models.CharField( max_length=30)
     title = models.CharField(max_length=30)
     status = models.CharField(max_length=30) #completed, ongoing, pending
     description = models.CharField(max_length=30)
