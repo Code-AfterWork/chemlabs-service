@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Button, Card, Form, Col, Row } from 'react-bootstrap';
 import '../App.css';
 
-export const JobCardUpload = () => {
+export const JobCardCreate = () => {
   const [formData, setFormData] = useState({
     jobcard_id: '',
     region: '',
@@ -90,124 +90,124 @@ export const JobCardUpload = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit} style={{ margin: '20px' }}>
-      <Row className="mb-3">
-        <Form.Group as={Col} controlId="formGridEmail">
-          <Form.Label>Jobcard ID</Form.Label>
-          <Form.Control
-            type="text"
-            name="jobcard_id"
-            onChange={handleChange}
-            value={formData.jobcard_id}
-            placeholder="Enter email"
-          />
-        </Form.Group>
+      <Form onSubmit={handleSubmit} style={{ margin: '20px' }}>
+        <Row className="mb-3">
+          <Form.Group as={Col} controlId="formGridEmail">
+            <Form.Label>Jobcard ID</Form.Label>
+            <Form.Control
+              type="text"
+              name="jobcard_id"
+              onChange={handleChange}
+              value={formData.jobcard_id}
+              placeholder="Enter email"
+            />
+          </Form.Group>
 
-        <Form.Group as={Col} controlId="formGridRegion">
-          <Form.Label>Region</Form.Label>
-          <Form.Select aria-label="Default select example" onChange={(e) => handleFieldChange('region', e)}>
-            {equipments.map((equipment, index) => (
-              <option key={index} value={equipment.region}>
-                {equipment.region}
-              </option>
-            ))}
-          </Form.Select>
-        </Form.Group>
+          <Form.Group as={Col} controlId="formGridRegion">
+            <Form.Label>Region</Form.Label>
+            <Form.Select aria-label="Default select example" onChange={(e) => handleFieldChange('region', e)}>
+              {equipments.map((equipment, index) => (
+                <option key={index} value={equipment.region}>
+                  {equipment.region}
+                </option>
+              ))}
+            </Form.Select>
+          </Form.Group>
 
-        <Form.Group as={Col} controlId="formGridInstitution">
-          <Form.Label>Institution Name</Form.Label>
-          <Form.Select aria-label="Default select example" onChange={(e) => handleFieldChange('inst_name', e)}>
-            {equipments.map((equipment, index) => (
-              <option key={index} value={equipment.inst_name}>
-                {equipment.inst_name}
-              </option>
-            ))}
-          </Form.Select>
-        </Form.Group>
+          <Form.Group as={Col} controlId="formGridInstitution">
+            <Form.Label>Institution Name</Form.Label>
+            <Form.Select aria-label="Default select example" onChange={(e) => handleFieldChange('inst_name', e)}>
+              {equipments.map((equipment, index) => (
+                <option key={index} value={equipment.inst_name}>
+                  {equipment.inst_name}
+                </option>
+              ))}
+            </Form.Select>
+          </Form.Group>
 
-        <Form.Group as={Col} controlId="formGridEquipment">
-          <Form.Label>Equipment</Form.Label>
-          <Form.Select aria-label="Default select example" onChange={(e) => handleFieldChange('equipment', e)}>
-            {equipments.map((equipment, index) => (
-              <option key={index} value={equipment.equipment}>
-                {equipment.equipment}
-              </option>
-            ))}
-          </Form.Select>
-        </Form.Group>
+          <Form.Group as={Col} controlId="formGridEquipment">
+            <Form.Label>Equipment</Form.Label>
+            <Form.Select aria-label="Default select example" onChange={(e) => handleFieldChange('equipment', e)}>
+              {equipments.map((equipment, index) => (
+                <option key={index} value={equipment.equipment}>
+                  {equipment.equipment}
+                </option>
+              ))}
+            </Form.Select>
+          </Form.Group>
 
-        <Form.Group as={Col} controlId="formGridSerialNumber">
-          <Form.Label>Serial Number</Form.Label>
-          <Form.Select aria-label="Default select example" onChange={(e) => handleFieldChange('serial_number', e)}>
-            {equipments.map((equipment, index) => (
-              <option key={index} value={equipment.serial_number}>
-                {equipment.serial_number}
-              </option>
-            ))}
-          </Form.Select>
-        </Form.Group>
-      </Row>
+          <Form.Group as={Col} controlId="formGridSerialNumber">
+            <Form.Label>Serial Number</Form.Label>
+            <Form.Select aria-label="Default select example" onChange={(e) => handleFieldChange('serial_number', e)}>
+              {equipments.map((equipment, index) => (
+                <option key={index} value={equipment.serial_number}>
+                  {equipment.serial_number}
+                </option>
+              ))}
+            </Form.Select>
+          </Form.Group>
+        </Row>
 
-      <Row>
-        <Form.Group as={Col} controlId="formGridAddress1">
-          <Form.Label>Received By</Form.Label>
-          <Form.Control type="text" name="received_by" onChange={handleChange} value={formData.received_by} placeholder="Complain Received By" />
-        </Form.Group>
+        <Row>
+          <Form.Group as={Col} controlId="formGridAddress1">
+            <Form.Label>Received By</Form.Label>
+            <Form.Control type="text" name="received_by" onChange={handleChange} value={formData.received_by} placeholder="Complain Received By" />
+          </Form.Group>
 
-        <Form.Group as={Col} controlId="formGridAddress2">
-          <Form.Label>Job Start Date</Form.Label>
-          <Form.Control type="text" name="job_start_date" onChange={handleChange} value={formData.job_start_date} placeholder="Job Start Date" />
-        </Form.Group>
+          <Form.Group as={Col} controlId="formGridAddress2">
+            <Form.Label>Job Start Date</Form.Label>
+            <Form.Control type="text" name="job_start_date" onChange={handleChange} value={formData.job_start_date} placeholder="Job Start Date" />
+          </Form.Group>
 
-        <Form.Group as={Col} controlId="formGridJobEndDate">
-          <Form.Label>Job End Date</Form.Label>
-          <Form.Control type="text" name="job_end_date" onChange={handleChange} value={formData.job_end_date} placeholder="Job Start Date" />
-        </Form.Group>
+          <Form.Group as={Col} controlId="formGridJobEndDate">
+            <Form.Label>Job End Date</Form.Label>
+            <Form.Control type="text" name="job_end_date" onChange={handleChange} value={formData.job_end_date} placeholder="Job Start Date" />
+          </Form.Group>
 
-        <Form.Group as={Col} controlId="formRequestedBy">
-          <Form.Label>Requested By</Form.Label>
-          <Form.Control type="text" name="requested_by" onChange={handleChange} value={formData.requested_by}  placeholder="Requested By" />
-        </Form.Group>
+          <Form.Group as={Col} controlId="formRequestedBy">
+            <Form.Label>Requested By</Form.Label>
+            <Form.Control type="text" name="requested_by" onChange={handleChange} value={formData.requested_by}  placeholder="Requested By" />
+          </Form.Group>
 
-        <Form.Group as={Col} controlId="formOkChecklist">
-          <Form.Label>Ok Checklist</Form.Label>
-          <Form.Control type="text" name="ok_checklist" onChange={handleChange} value={formData.ok_checklist} placeholder="Ok Checklist" />
-        </Form.Group>
-      </Row>
+          <Form.Group as={Col} controlId="formOkChecklist">
+            <Form.Label>Ok Checklist</Form.Label>
+            <Form.Control type="text" name="ok_checklist" onChange={handleChange} value={formData.ok_checklist} placeholder="Ok Checklist" />
+          </Form.Group>
+        </Row>
 
-      <Row>
-        <Form.Group as={Col} controlId="formFaultyChecklist">
-          <Form.Label>Faulty Checklist</Form.Label>
-          <Form.Control type="text" name="faulty_checklist" onChange={handleChange} value={formData.faulty_checklist} placeholder="Enter email" />
-        </Form.Group>
+        <Row>
+          <Form.Group as={Col} controlId="formFaultyChecklist">
+            <Form.Label>Faulty Checklist</Form.Label>
+            <Form.Control type="text" name="faulty_checklist" onChange={handleChange} value={formData.faulty_checklist} placeholder="Enter email" />
+          </Form.Group>
 
-        <Form.Group as={Col} controlId="formSparesUsed">
-          <Form.Label>Spares Used</Form.Label>
-          <Form.Control type="text" name="spare_used" onChange={handleChange} value={formData.spare_used} placeholder="Spares Used" />
-        </Form.Group>
+          <Form.Group as={Col} controlId="formSparesUsed">
+            <Form.Label>Spares Used</Form.Label>
+            <Form.Control type="text" name="spare_used" onChange={handleChange} value={formData.spare_used} placeholder="Spares Used" />
+          </Form.Group>
 
-        <Form.Group as={Col} controlId="formLaborCharge">
-          <Form.Label>Labor Charge</Form.Label>
-          <Form.Control type="text" name="labor_charge" onChange={handleChange} value={formData.labor_charge} placeholder="Labor Charge" />
-        </Form.Group>
+          <Form.Group as={Col} controlId="formLaborCharge">
+            <Form.Label>Labor Charge</Form.Label>
+            <Form.Control type="text" name="labor_charge" onChange={handleChange} value={formData.labor_charge} placeholder="Labor Charge" />
+          </Form.Group>
 
-        <Form.Group as={Col} controlId="formTotalCost">
-          <Form.Label>Total Cost</Form.Label>
-          <Form.Control type="text" name="total_cost" onChange={handleChange} value={formData.total_cost} placeholder="Total Cost" />
-        </Form.Group>
-      </Row>
+          <Form.Group as={Col} controlId="formTotalCost">
+            <Form.Label>Total Cost</Form.Label>
+            <Form.Control type="text" name="total_cost" onChange={handleChange} value={formData.total_cost} placeholder="Total Cost" />
+          </Form.Group>
+        </Row>
 
-        <label className="jobCardLabel">
-          Uploaded Media:
-          <input type="file" name="uploaded_media" onChange={handleFileChange} />
-        </label>
+          <label className="jobCardLabel">
+            Uploaded Media:
+            <input type="file" name="uploaded_media" onChange={handleFileChange} />
+          </label>
 
-        <br/>
+          <br/>
 
-      <Button variant="primary" type="submit">
-        Create Job Card
-      </Button>
-    </Form>
+        <Button variant="primary" type="submit">
+          Create Job Card
+        </Button>
+      </Form>
   );
 };
 
@@ -223,7 +223,7 @@ export const JobCardUpload = () => {
 // import '../App.css';
 
 
-// export const JobCardUpload = () => {
+// export const JobCardCreate = () => {
 //   const [formData, setFormData] = useState({
 //     jobcard_id: '',
 //     region: '',

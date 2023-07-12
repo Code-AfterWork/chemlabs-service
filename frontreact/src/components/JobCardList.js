@@ -4,7 +4,7 @@ import { Document, Page, pdfjs } from 'react-pdf';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import axios from 'axios';
 
-export const JobCards = () => {
+export const JobCardList = () => {
   const [jobcards, setJobcards] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [jobcard, setJobcard] = useState(null);

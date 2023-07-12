@@ -7,13 +7,14 @@ export function Navigation({ isAuthenticated }) {
     <div>
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand href="/">Chem-labs Service Portal</Navbar.Brand>
+        
         <Nav className="me-auto">
           {!isAuthenticated && <Nav.Link href="/">Home</Nav.Link>}
         </Nav>
-
+{/* 
         <Nav className="me-auto">
           {isAuthenticated && <Nav.Link href="/jobcards">View JobCards</Nav.Link>}
-        </Nav>
+        </Nav> */}
 
         
 
@@ -22,7 +23,7 @@ export function Navigation({ isAuthenticated }) {
         </Nav>
 
         <Nav>
-          {isAuthenticated && <Nav.Link href="/jobcardcreate">Create Job Card</Nav.Link>}
+          {isAuthenticated && <Nav.Link href="/jobcards">Jobcards</Nav.Link>}
         </Nav>
 
         

@@ -66,15 +66,5 @@ class JobCard(models.Model):
     class Meta:
         ordering = ("-jobcard_created_at",)
 
-    def __str__(self):
-        return self.jobcard_id
-
-class GeneratedJobCard(models.Model):
-    id = models.CharField(max_length=30, primary_key=True)
-    institution = models.ForeignKey(Institution, on_delete=models.CASCADE)
-    equipment = models.ForeignKey(Equipment, on_delete=models.CASCADE)
-    uploaded_media = models.FileField(upload_to='jobcards/')
-
-    def __str__(self):
-        return self.jobcardcard_id
-
+    # def __str__(self):
+    #     return int(self.jobcard_id)

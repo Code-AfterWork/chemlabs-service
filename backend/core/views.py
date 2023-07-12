@@ -26,6 +26,8 @@ class InstitutionDetailView(generics.RetrieveUpdateDestroyAPIView):
     # permission_classes = [AllowAny]
 
 
+
+
 # API to get list of equipments and edit equipments
 class EquipmentList(generics.ListCreateAPIView):
     queryset = Equipment.objects.all()
@@ -37,10 +39,14 @@ class EquipmentDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = EquipmentListSerializer
     # permission_classes = [AllowAny]
 
+
+
 # List to get and edit job cards
 class JobCardListCreateView(generics.ListCreateAPIView):
     queryset = JobCard.objects.all()
     serializer_class = JobCardSerializer
+    permission_classes = [AllowAny]
+
 
     def create(self, request, *args, **kwargs):
         request.data['created_by'] = request.user.id

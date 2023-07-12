@@ -18,4 +18,4 @@ class EquipmentListSerializer(serializers.ModelSerializer):
 class InstitutionListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Institution
-        fields = '__all__'               
+        fields = '__all__'
