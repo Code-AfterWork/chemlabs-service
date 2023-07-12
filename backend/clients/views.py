@@ -7,13 +7,13 @@ from .serializers import TicketCreateSerializer
 # API to get and edit tickets for clients
 # this endpoint is only visible to clients and ticket creator
 class  TicketListCreateView(generics.ListCreateAPIView):
-    queryset = Ticket.objects.values("serial_number","equipment", "title","description", "created_by")
+    queryset = Ticket.objects.values("serial_number","equipment", "title","description","created_by")
     serializer_class =  TicketCreateSerializer
 
-    def create(self, request, *args, **kwargs):
-        request.data['created_by'] = request.user.id
-        return super().create(request, *args, **kwargs)
+    
+    def perform_create(self, serializer):
+        serializer.save(created_by=self.request.user)
     
 class  TicketDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Ticket.objects.values("serial_number","equipment", "title","description", "created_by")
+    queryset = Ticket.objects.values("serial_number","equipment", "title","description","created_by")
     serializer_class =  TicketCreateSerializer

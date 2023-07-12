@@ -1,22 +1,28 @@
 from rest_framework import generics
+from rest_framework.permissions import BasePermission, IsAdminUser
 from .models import JobCard, Equipment,Institution
 from clients.models import Ticket
 from .serializers import JobCardSerializer,  EquipmentListSerializer, InstitutionListSerializer
 from employees.serializers import TicketAssignserializer
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 
-# default permission is set globally to IsAuthenticated
-# specify specific permission to a view if needed
+class IsAdminOrEmployee(BasePermission):
+    def has_permission(self, request, view):
+        if request.user.is_authenticated:
+            if request.user.groups.filter(name="employees").exists() or request.user.is_staff:
+                return True
+        return False
 
 # API to get list of institutions and edit institutions
 class InstitutionList(generics.ListCreateAPIView):
     queryset = Institution.objects.all()
     serializer_class = InstitutionListSerializer
-    # permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated, IsAdminOrEmployee]
 
 class InstitutionDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Institution.objects.all()
     serializer_class = InstitutionListSerializer
+    permission_classes = [IsAuthenticated, IsAdminOrEmployee]
     # permission_classes = [AllowAny]
 
 

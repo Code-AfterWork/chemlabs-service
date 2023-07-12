@@ -9,7 +9,7 @@
 
 
 ## Endpoints
-/user/register
+/user/register 
 /user/login
 /usertoken/tokenrefresh
 /user/logout
@@ -25,3 +25,29 @@
 /equipments
 /institutions
 /jobcards
+
+
+How to authorize a particular group 
+
+```
+from rest_framework.permissions import BasePermission, IsAdminUser
+
+class IsAdminOrEmployee(BasePermission):
+    def has_permission(self, request, view):
+        if request.user.is_authenticated:
+            if request.user.groups.filter(name="employees").exists() or request.user.is_staff:
+                return True
+        return False
+
+# API to get list of institutions and edit institutions
+class InstitutionList(generics.ListCreateAPIView):
+    queryset = Institution.objects.all()
+    serializer_class = InstitutionListSerializer
+    permission_classes = [IsAuthenticated, IsAdminOrEmployee]
+
+class InstitutionDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Institution.objects.all()
+    serializer_class = InstitutionListSerializer
+    permission_classes = [IsAuthenticated, IsAdminOrEmployee]
+
+```    
