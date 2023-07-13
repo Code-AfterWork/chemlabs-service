@@ -23,7 +23,7 @@ class UserRegisterationAPIView(GenericAPIView):
         user = serializer.save()
 
         # Add user to the "clients" group
-        group = Group.objects.get(name="clients")
+        group = Group.objects.get(name="employees")
         user.groups.add(group)
 
         token = RefreshToken.for_user(user)
