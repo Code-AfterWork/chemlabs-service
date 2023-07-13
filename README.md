@@ -9,23 +9,37 @@
 
 
 ## Endpoints
-/user/register 
-/user/login
-/usertoken/tokenrefresh
-/user/logout
-/user/profile
-/user/profile/avatar
+/user/register <br>
+/user/login <br>
+/usertoken/tokenrefresh <br>
+/user/logout <br>
+/user/profile <br>
+/user/profile/avatar <br>
 
 
-/employee/tickets/assign <--- For head engineer to assign tickets
-/employee/tickets/complete <---- for other engineers to complete tickets
+/employee/tickets/assign <--- For head engineer to assign tickets <br>
+/employee/tickets/complete <---- for other engineers to complete tickets <br>
 
-/client/tickets <--- for clients to create tickets
+/client/tickets <--- for clients to create tickets <br>
 
-/equipments
-/institutions
-/jobcards
+/equipments <br>
+/institutions <br>
+/jobcards <br>
 
+## How to run
+### Backend
+```
+cd backend
+source venv/bin/activate
+pip install django djangorestfraework
+python manage.py runserver
+```
+### Frontend
+```
+cd frontreact
+npm install
+npm start
+```
 
 How to authorize a particular group 
 

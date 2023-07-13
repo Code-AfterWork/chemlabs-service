@@ -60,9 +60,9 @@ export const JobCardList = () => {
             {jobcards.map((jobcard, index) => (
               <CardGroup key={index}>
                 <Card.Body>
-                  <Card.Title>{jobcard.jobcard_id}</Card.Title>
+                  {/* <Card.Title>{jobcard.jobcard_id}</Card.Title> */}
                   <p>
-                    Institution: {jobcard.inst_name}
+                    Institution: {jobcard.institution}
                     <br />
                     Equipment: {jobcard.equipment}
                     <br />

@@ -5,13 +5,12 @@ import CardGroup from 'react-bootstrap/CardGroup';
 import { Container, Button } from 'react-bootstrap';
 import {JobCardCreate} from '../components/JobCardCreate.js'
 import {JobCardList} from '../components/JobCardList.js'
-import {EquipmentSearch} from '../components/EqptSearch.js';
+import {EquipmentSearch} from '../components/EquipmentList.js';
 
 export const JobCards = () => {
 
   return (
-    <Container className="text-center">
-      <div>
+      <div style={{margin:"0 auto",textAlign:"center" ,width:"80%"}}>
         <h1>View and Create Jobcards</h1>
         <h3>Create Job Card</h3>
         <JobCardCreate></JobCardCreate>
@@ -27,6 +26,5 @@ export const JobCards = () => {
         <JobCardList></JobCardList>
         
       </div>
-    </Container>
   );
 };

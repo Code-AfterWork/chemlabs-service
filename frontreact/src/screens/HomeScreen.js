@@ -11,15 +11,15 @@ import {JobCardCreate} from '../components/JobCardCreate.js'
 import {JobCards} from '../components/JobCardList.js'
 
 import {Dashboard} from './dashboard.js';
-import {EquipmentSearch} from '../components/EqptSearch.js';
+import {EquipmentSearch} from '../components/EquipmentList.js';
 
 export const HomeScreen = () => {
 
   return (
-    <Container className="text-center">
+    // <Container className="text-center">
       <div>
         <EquipmentSearch></EquipmentSearch>
       </div>
-    </Container>
+    // </Container>
   );
 };
