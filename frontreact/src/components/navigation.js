@@ -9,16 +9,11 @@ export function Navigation({ isAuthenticated }) {
         <Navbar.Brand href="/">Chem-labs Service Portal</Navbar.Brand>
         
         <Nav className="me-auto">
-          {!isAuthenticated && <Nav.Link href="/">Home</Nav.Link>}
+          {isAuthenticated && <Nav.Link href="/">Home</Nav.Link>}
         </Nav>
-{/* 
-        <Nav className="me-auto">
-          {isAuthenticated && <Nav.Link href="/jobcards">View JobCards</Nav.Link>}
-        </Nav> */}
 
-        
 
-        <Nav className="me-auto">
+        <Nav >
           {isAuthenticated && <Nav.Link href="/tickets">Tickets</Nav.Link>}
         </Nav>
 
@@ -26,7 +21,6 @@ export function Navigation({ isAuthenticated }) {
           {isAuthenticated && <Nav.Link href="/jobcards">Jobcards</Nav.Link>}
         </Nav>
 
-        
 
         <Nav>
           {!isAuthenticated && <Nav.Link href="/register">Sign Up</Nav.Link>}

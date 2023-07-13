@@ -13,12 +13,19 @@ export const JobCards = () => {
     <Container className="text-center">
       <div>
         <h1>View and Create Jobcards</h1>
-        <h3>Equipment List</h3>
-        <EquipmentSearch></EquipmentSearch>
         <h3>Create Job Card</h3>
         <JobCardCreate></JobCardCreate>
-        <h3>View Job Cards</h3>
+
+        <div style={{margin:"30px"}}>
+          <h3>Equipment List</h3>
+        </div>
+        <EquipmentSearch></EquipmentSearch>
+
+        <div style={{margin:"30px"}}>
+          <h3 >View Job Cards</h3>
+        </div>
         <JobCardList></JobCardList>
+        
       </div>
     </Container>
   );
