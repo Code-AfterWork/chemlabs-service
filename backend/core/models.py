@@ -6,7 +6,6 @@ from users.models import CustomUser
 # from oauth2_provider.models import AbstractApplication
 # from django.utils.translation import gettext_lazy as _
 
-
 # opting to have all database definition code in one file
 # CREATE 4 TABLES
 # 1. EQUIPMENT
