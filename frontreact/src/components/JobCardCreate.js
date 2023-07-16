@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Button, Card, Form, Col, Row } from 'react-bootstrap';
-import '../App.css';
 
 export const JobCardCreate = () => {
   const [formData, setFormData] = useState({

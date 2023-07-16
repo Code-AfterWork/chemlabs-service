@@ -55,7 +55,7 @@ export const JobCardList = () => {
   };
 
   return (
-    <Card style={{margin:"30px"}}>
+    <Card style={{margin:"30px", }}>
       <Row xs={1} md={3} className="g-4">
             {jobcards.map((jobcard, index) => (
               <CardGroup key={index}>

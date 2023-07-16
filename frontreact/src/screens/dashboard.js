@@ -3,21 +3,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Container, Button, Card } from 'react-bootstrap';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+// import {contact} from "..components/Contact.jsx";
+import {Contact} from '../components/Contact.jsx';
+import {EquipmentCovered} from '../components/EquipmentCovered.jsx';
+import {Hero} from '../components/Hero.jsx';
+import {Services} from '../components/Services.jsx';
+
 
 export const Dashboard = () => {
   return (
-    <Container style={{padding:"20px"}}>
-      <Card className="text-center">
-        <Card.Header>First Class Service</Card.Header>
-        <Card.Body>
-          <Card.Title>Join to Get Quality Support</Card.Title>
-          <Card.Text>
-            With our support system, you can worry less about your laboratory
-          </Card.Text>
-          <Button variant="primary">Register</Button>
-        </Card.Body>
-        <Card.Footer className="text-muted">20% off on Service Contracts</Card.Footer>
-      </Card>
-    </Container>
+    <>
+      <Hero/>
+      <Services/>
+      <EquipmentCovered/>
+      <Contact/>
+    </>
   );
 };
