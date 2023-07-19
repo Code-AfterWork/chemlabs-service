@@ -6,4 +6,6 @@ app_name = "jobcards"
 urlpatterns = [
     path('tickets/',  TicketListCreateView.as_view(), name='ticket-list'),
     path('tickets/<str:pk>/',  TicketDetailView.as_view(), name='ticket-detail'),
+
+    path('errors/', ErrorLogAPIView.as_view(), name='error-log'),
 ]

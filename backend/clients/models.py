@@ -24,3 +24,12 @@ class Ticket(models.Model):
 
     def __str__(self):
         return self.title
+
+# stores errors received
+class ErrorLog(models.Model):
+    facility = models.CharField(max_length=100)
+    error = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.facility} - {self.error}"       
