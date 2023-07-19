@@ -5,6 +5,7 @@ import CardGroup from 'react-bootstrap/CardGroup';
 import { Container, Button } from 'react-bootstrap';
 import { TicketCreate } from '../components/TicketCreate.js';
 import { TicketList } from '../components/TicketList.js';
+import {TicketListHeadEngineer} from '../components/TicketListHeadEngineer.jsx'
 
 export const Tickets = () => {
 
@@ -13,6 +14,9 @@ export const Tickets = () => {
       <div>
         <h2>View and Create Tickets</h2>
         <TicketCreate></TicketCreate>
+        <h3 style={{margin:"20px"}}>Unassigned Tickets</h3>
+        <TicketListHeadEngineer></TicketListHeadEngineer>
+        <h3 style={{margin:"20px"}}>Ongoing Tickets</h3>
         <TicketList></TicketList>
         
       </div>

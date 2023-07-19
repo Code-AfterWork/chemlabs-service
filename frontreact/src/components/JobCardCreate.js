@@ -300,7 +300,7 @@ export const JobCardCreate = () => {
         </Form.Group>
       </Row>
 
-      <label className="jobCardLabel">
+      <label className="jobCardLabel" style={{margin:"20px"}}>
         Uploaded Media:
         <input type="file" name="uploaded_media" onChange={handleFileChange} />
       </label>
