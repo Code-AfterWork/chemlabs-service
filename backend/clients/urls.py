@@ -8,4 +8,6 @@ urlpatterns = [
     path('tickets/<str:pk>/',  TicketDetailView.as_view(), name='ticket-detail'),
 
     path('errors/', ErrorLogAPIView.as_view(), name='error-log'),
+
+    path('get_average_turn_around/', AverageTurnaroundTimeView.as_view(), name='get_average_turn_around'),
 ]

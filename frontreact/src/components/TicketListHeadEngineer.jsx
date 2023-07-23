@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Card, Button, Row, Form } from "react-bootstrap";
+import { Card, Button, Row, Form, Col, CardGroup } from "react-bootstrap";
 
 export const TicketListHeadEngineer = () => {
   const [tickets, setTickets] = useState([]);
-
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState('');
 
@@ -51,24 +50,17 @@ export const TicketListHeadEngineer = () => {
   };
 
   return (
-    <Row xs={1} md={2} className="g-4">
+    <CardGroup>
       {tickets.map((ticket) => (
-        <Card key={ticket.id}>
+        <Card key={ticket.id} style={{margin:"5px"}}>
           <Card.Header>
-            <h4>{ticket.title}</h4>
+            <p><b>{ticket.title}</b></p>
             <p>{ticket.equipment}</p>
           </Card.Header>
           <Card.Body>
             <p>{ticket.description}</p>
           </Card.Body>
-          <Card.Footer>
-            <Button
-              variant={ticket.assigned_to == "" ? "Warning" : "outline-secondary"}
-              onClick={() => handlePending(ticket.assigned_to)}
-              style={{ margin: "10px" }}
-            >
-              Pending
-            </Button>
+          <Card.Footer >
 
             {users.length > 0 && (
               <Form
@@ -94,18 +86,16 @@ export const TicketListHeadEngineer = () => {
                 </Button>
               </Form>
             )}
-
-
-            <Button
+            {/* <Button
               variant={ticket.completed  ? "success" : "outline-secondary"}
               onClick={() => handleCompleted(ticket.id)}
               style={{ margin: "10px" }}
             >
               Completed
-            </Button>
+            </Button> */}
           </Card.Footer>
         </Card>
       ))}
-    </Row>
+    </CardGroup>
   );
 };

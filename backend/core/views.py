@@ -1,7 +1,7 @@
 from rest_framework import generics
 from rest_framework.permissions import BasePermission, IsAdminUser
-from .models import JobCard, Equipment,Institution
-from clients.models import Ticket
+from .models import JobCard, Equipment,Institution, Ticket
+# from clients.models import Ticket
 from .serializers import JobCardSerializer,  EquipmentListSerializer, InstitutionListSerializer
 from employees.serializers import TicketAssignserializer
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -26,8 +26,6 @@ class InstitutionDetailView(generics.RetrieveUpdateDestroyAPIView):
     # permission_classes = [AllowAny]
 
 
-
-
 # API to get list of equipments and edit equipments
 class EquipmentList(generics.ListCreateAPIView):
     queryset = Equipment.objects.all()
@@ -40,18 +38,16 @@ class EquipmentDetailView(generics.RetrieveUpdateDestroyAPIView):
     # permission_classes = [IsAuthenticated, IsAdminOrEmployee]
 
 
-
-
 # List to get and edit job cards
 class JobCardListCreateView(generics.ListCreateAPIView):
     queryset = JobCard.objects.all()
     serializer_class = JobCardSerializer
-    # permission_classes = [IsAuthenticated, IsAdminOrEmployee]
+    permission_classes = [IsAuthenticated]
 
 
-    def create(self, request, *args, **kwargs):
-        request.data['created_by'] = request.user.id
-        return super().create(request, *args, **kwargs)
+    # def create(self, request, *args, **kwargs):
+    #     request.data['created_by'] = request.user.id
+    #     return super().create(request, *args, **kwargs)
 
 class JobCardDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = JobCard.objects.all()

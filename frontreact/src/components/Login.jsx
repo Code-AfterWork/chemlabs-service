@@ -6,9 +6,11 @@ import {Navigate} from "react-router-dom";
 const AuthForm = styled.form`
   width: 500px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 40px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  margin-top: 20px;
+
 
   h3 {
     text-align: center;
@@ -17,6 +19,7 @@ const AuthForm = styled.form`
 
   .form-group {
     margin-bottom: 15px;
+
   }
 
   input {

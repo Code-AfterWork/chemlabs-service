@@ -1,79 +1,65 @@
-// api.js
+import axios from 'axios';
+
 const BASE_URL = 'http://127.0.0.1:8000/'; // Replace this with your API base URL
+// const accessToken = localStorage.getItem('accessToken');
+// const refreshToken = localStorage.getItem('refreshToken');
 
 const getAccessToken = () => {
-  // Implement the logic to get the access token from your preferred storage (e.g., local storage, Redux store, etc.)
-  return 'your_access_token';
+  return localStorage.getItem('accessToken');
 };
 
 const getRefreshToken = () => {
-  // Implement the logic to get the refresh token from your preferred storage (e.g., local storage, Redux store, etc.)
-  return 'your_refresh_token';
+  return localStorage.getItem('refreshToken');
 };
 
 const saveAccessToken = (access_token) => {
-  // Implement the logic to save the access token to your preferred storage (e.g., local storage, Redux store, etc.)
+    localStorage.setItem('accessToken', access_token);
 };
 
-const handleAuthenticatedRequest = async (url, method, data = null) => {
-  const access_token = getAccessToken();
-
-  const headers = {
-    'Authorization': `Bearer ${access_token}`,
+export const api = axios.create({
+  baseURL: BASE_URL,
+  headers: {
     'Content-Type': 'application/json',
-  };
+  },
+});
 
-  try {
-    const response = await fetch(BASE_URL + url, {
-      method,
-      headers,
-      body: data ? JSON.stringify(data) : null,
-    });
+api.interceptors.request.use((config) => {
+  const access_token = getAccessToken();
+  if (access_token) {
+    config.headers['Authorization'] = `Bearer ${access_token}`;
+  }
+  return config;
+});
+
+api.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    const originalRequest = error.config;
+    const access_token = getAccessToken();
+    const refresh_token = getRefreshToken();
 
     // Handle cases where the access token is expired (status code 401)
-    if (response.status === 401) {
-      const refresh_token = getRefreshToken();
-
-      // Make a request to the token refresh endpoint to get a new access token
-      const refreshResponse = await fetch(BASE_URL + '/api/token/refresh/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ refresh: refresh_token }),
-      });
-
-      if (refreshResponse.ok) {
-        const data = await refreshResponse.json();
-        const new_access_token = data.access;
-        saveAccessToken(new_access_token);
-
-        // Retry the original request with the new access token
-        const retryResponse = await fetch(BASE_URL + url, {
-          method,
-          headers: {
-            ...headers,
-            'Authorization': `Bearer ${new_access_token}`,
-          },
-          body: data ? JSON.stringify(data) : null,
+    if (error.response.status === 401 && access_token && refresh_token) {
+      try {
+        const refreshResponse = await api.post('/api/token/refresh/', {
+          refresh: refresh_token,
         });
 
-        return retryResponse.json();
-      } else {
+        if (refreshResponse.status === 200) {
+          const new_access_token = refreshResponse.data.access;
+          saveAccessToken(new_access_token);
+
+          // Retry the original request with the new access token
+          originalRequest.headers['Authorization'] = `Bearer ${new_access_token}`;
+          return api(originalRequest);
+        }
+      } catch (refreshError) {
         // Handle refresh token error cases (e.g., refresh token expired, invalid refresh token)
-        console.error('Error refreshing token:', refreshResponse);
+        console.error('Error refreshing token:', refreshError);
         throw new Error('Error refreshing token');
       }
     }
 
-    // Implement error handling and response parsing as needed
-
-    return response.json();
-  } catch (error) {
-    // Handle other error cases
-    console.error('Error:', error);
-    throw error;
+    return Promise.reject(error);
   }
-};
-
-export { handleAuthenticatedRequest };
+);

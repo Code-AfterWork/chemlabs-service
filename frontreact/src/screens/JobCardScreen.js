@@ -11,8 +11,6 @@ export const JobCards = () => {
 
   return (
       <div style={{margin:"0 auto",textAlign:"center" ,width:"80%"}}>
-        <h1>View and Create Jobcards</h1>
-        <h3>Create Job Card</h3>
         <JobCardCreate></JobCardCreate>
 
         <div style={{margin:"30px"}}>

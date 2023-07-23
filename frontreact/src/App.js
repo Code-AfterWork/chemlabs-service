@@ -14,6 +14,9 @@ import { far } from '@fortawesome/free-regular-svg-icons';
 import { JobCards } from './screens/JobCardScreen.js';
 import { Tickets } from './screens/TicketScreen.js';
 
+import './style/index.css'
+
+
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -23,8 +26,19 @@ function App() {
     }
   }, []);
 
+
+  const style = {
+    background: 'rgba(236, 216, 239, 0.4)',
+    boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
+    backdropFilter: 'blur(15px)',
+    WebkitBackdropFilter: 'blur(15px)',
+    borderRadius: '10px',
+    border: '1px solid rgba(255, 255, 255, 0.18)',
+  };
+  
   return (
     <BrowserRouter>
+      <div style={style}>
         <Navigation isAuthenticated={isAuthenticated} />
         <Routes>
             {!isAuthenticated ? (
@@ -42,6 +56,7 @@ function App() {
           } /> */}
         </Routes>
         <Footer />
+      </div>
     </BrowserRouter>
 
   );

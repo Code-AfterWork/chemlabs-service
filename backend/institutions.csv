@@ -1,0 +1,24 @@
+id,region,name,email_address,address,phone
+2,NRB,Ace medical,ace@mail.com,P.O.BOX N11042047094,25471234567
+3,NRB,DFMH,dfmh@mail.com,3.0915,25471234568
+4,NRB,DFMH,dfmh@mail.com,1.10E+17,25471234569
+5,NRB,DMRC,dmrc@mail.com,12202082003,25471234570
+6,NRB,Guru Nanak,guru@mail.com,3500-4946,25471234571
+7,NRB,Kenyatta University,kenyatta@mail.com,N11041839015,25471234572
+8,NRB,kiambu level 4 hospital,kiambu@mail.com,1812164,25471234573
+9,NRB,Mary Help of The Sick,mary@mail.com,825001434,25471234574
+10,NRB,Mater Karen,mater@mail.com,2.1172,25471234575
+11,NRB,Mater Karen,mater@mail.com,11191239005,25471234576
+16,NRB,Southlake Medical Naivasha,southlake@mail.com,825002558,25471234581
+17,NRB,Wangige Sub-county Hospital,wangige@mail.com,3500-4792,25471234582
+18,NRB,Wangige Sub-county Hospital,wangige@mail.com,1.01E+16,25471234583
+19,MTK,Consolata Hospital Kyeni,consolata@mail.com,1.01E+19,25471234584
+20,MTK,Consolata Nkubu,consolata@mail.com,1.01E+17,25471234585
+21,MTK,Engineer District Hospital,engineer@mail.com,1812153,25471234586
+22,MTK,Engineer District Hospital,engineer@mail.com,11181711004,25471234587
+23,MTK,Grace Park Medical & Dental Services,grace@mail.com,2001104,25471234588
+24,MTK,Grace Park Medical & Dental Services,grace@mail.com,12200544001,25471234589
+25,MTK,Imara Mediplus - Rwika,imara@mail.com,N11042136010,25471234590
+26,MTK,Imara Mediplus - Rwika,imara@mail.com,2205268,25471234591
+27,UWST,Elgonview Hospital,elgonview@mail.com,11180291003,25471234592
+28,UWST,Elgonview Hospital,elgonview@mail.com,2.30E+14,25471234593

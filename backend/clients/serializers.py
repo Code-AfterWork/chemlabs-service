@@ -1,4 +1,4 @@
-from clients.models import Ticket, ErrorLog
+from core.models import *
 from rest_framework import serializers
 
 class  TicketCreateSerializer(serializers.ModelSerializer):

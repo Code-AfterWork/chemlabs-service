@@ -1,13 +1,20 @@
 from django.shortcuts import render
 # from core.serializers import *
 from rest_framework import generics, status
-from .models import *
+from core.models import *
 from .serializers import TicketCreateSerializer, ErrorLogSerializer
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.permissions import BasePermission, IsAdminUser
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django.db.models import Avg, Sum
+from django.http import JsonResponse
+from django.views import View
+
+from datetime import timedelta
+import datetime
+import dateutil
 
 
 class IsAdminOrClient(BasePermission):
@@ -32,6 +39,29 @@ class  TicketListCreateView(generics.ListCreateAPIView):
     
     def perform_create(self, serializer):
         serializer.save(created_by=self.request.user)
+
+    
+
+class AverageTurnaroundTimeView(APIView):
+
+    def get(self, request):
+        # Get all tickets that are marked as completed
+        completed_tickets = Ticket.objects.filter(status=True)
+
+        # Get the total number of completed tickets
+        total_tickets = completed_tickets.count()
+
+        # Get the total turnaround time for all completed tickets
+        total_turnaround_time = completed_tickets.aggregate(Sum('turn_around'))['turn_around__sum']
+
+        # Calculate the average turnaround time
+        average_turnaround_time = total_turnaround_time / total_tickets
+
+        # Format the average turnaround time
+        formatted_average_turnaround_time = str(average_turnaround_time)
+
+        return Response({'average_turnaround_time': formatted_average_turnaround_time})
+      
     
 class  TicketDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Ticket.objects.all()

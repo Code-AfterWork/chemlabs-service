@@ -41,7 +41,7 @@ export const Navigation = ({ isAuthenticated }) => {
 
   return (
     <div>
-      <Navbar className="sticky-navbar" bg="light" variant="light" >
+      <Navbar className="sticky-navbar" bg="" variant="light" >
         <Navbar.Brand href="/" style={{marginLeft:"20px", marginRight:"20px"}}>
             <img src="https://chem-labs.com/web/image/website/1/logo/Chem-Labs%20LTD?unique=0a04a07" alt="Chem-labs Service Portal" width="10%" object-fit="cover"/>
         </Navbar.Brand>

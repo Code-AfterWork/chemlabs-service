@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework import generics
-from clients.models import Ticket
+from core.models import Ticket
 from .serializers import TicketAssignserializer, TicketCompletedserializer
 # from .serializers import JobCardSerializer,  EquipmentListSerializer, InstitutionListSerializer, TicketAssignserializer
 from rest_framework.permissions import AllowAny

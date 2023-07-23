@@ -13,13 +13,14 @@ import {JobCards} from '../components/JobCardList.js'
 import {Dashboard} from './dashboard.js';
 import {EquipmentSearch} from '../components/EquipmentList.js';
 
+
+import '../style/index.css'
+
 export const HomeScreen = () => {
 
   return (
-    // <Container className="text-center">
-      <div className="Class" >
+      <div className='home'>
         <EquipmentSearch></EquipmentSearch>
       </div>
-    // </Container>
   );
 };

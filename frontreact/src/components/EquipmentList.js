@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Table, InputGroup, Form, Modal, Button } from 'react-bootstrap';
 
+import '../style/index.css'
+
 const API_URL = 'http://127.0.0.1:8000/equipments/';
 
 export const EquipmentSearch = () => {
@@ -47,6 +49,16 @@ export const EquipmentSearch = () => {
     }
   };
 
+
+  const getInstitutionName = (entry) => {
+    const institution = entry.institution;
+    if (institution) {
+      return institution.name;
+    }
+    return null;
+  };
+
+
   const filteredData = data.filter((entry) =>
     entry.equipment.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -63,7 +75,7 @@ export const EquipmentSearch = () => {
     <tr key={entry.serial_number} onClick={() => handleRowClick(entry)}>
       <td>{entry.serial_number}</td>
       <td>{entry.region}</td>
-      <td>{entry.inst_name}</td>
+      <td>{getInstitutionName(entry)}</td>
       <td>{entry.equipment}</td>
       <td>{entry.status ? 'Active' : 'Inactive'}</td>
       <td>{entry.install_date}</td>
@@ -85,7 +97,7 @@ export const EquipmentSearch = () => {
   );
 
   return (
-    <div style={{ margin: '10px' }}>
+    <div style={{ margin: '10px'}}>
       <InputGroup className="mb-3" style={{ margin: '15px' }}>
         <Form.Control
           type="text"
@@ -151,7 +163,7 @@ export const EquipmentSearch = () => {
                   <Form.Label>Institution</Form.Label>
                   <Form.Control
                     type="text"
-                    value={editedData.inst_name}
+                    value={editedData.institution.name}
                     onChange={(e) =>
                       setEditedData({ ...editedData, inst_name: e.target.value })
                     }

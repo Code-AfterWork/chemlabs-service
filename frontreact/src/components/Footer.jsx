@@ -1,3 +1,5 @@
+
+
 import React from 'react';
 import {
   MDBFooter,
@@ -10,7 +12,7 @@ import {
 
 export const Footer = () => {
   return (
-    <MDBFooter className='text-center text-white' style={{ backgroundColor: '#f1f1f1', bottom: 0, width: '100%' }}>
+    <MDBFooter className='text-center text-white' style={{ bottom: 0, width: '100%'}}>
       <MDBContainer className='pt-2'>
         <section className='mb-2'>
           <MDBBtn
@@ -51,10 +53,10 @@ export const Footer = () => {
         </section>
       </MDBContainer>
 
-      <div className='text-center text-light p-3' style={{ backgroundColor: 'rgba(0, 0, 0, 0.8)',}}>
-        © 2023 Copyright:   <></>
-        <a className='text-light' href=''>
-          Chem-labs Service Portal
+      <div style={{color:"black"}}>
+       © 2023 Copyright:   
+        <a href=''>
+          Chem-labs ICT
         </a>
       </div>
     </MDBFooter>
