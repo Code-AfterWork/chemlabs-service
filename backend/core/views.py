@@ -32,12 +32,13 @@ class InstitutionDetailView(generics.RetrieveUpdateDestroyAPIView):
 class EquipmentList(generics.ListCreateAPIView):
     queryset = Equipment.objects.all()
     serializer_class = EquipmentListSerializer
-    # permission_classes = [AllowAny]
+    # permission_classes = [IsAuthenticated, IsAdminOrEmployee]
 
 class EquipmentDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Equipment.objects.all()
     serializer_class = EquipmentListSerializer
-    # permission_classes = [AllowAny]
+    # permission_classes = [IsAuthenticated, IsAdminOrEmployee]
+
 
 
 
@@ -45,7 +46,7 @@ class EquipmentDetailView(generics.RetrieveUpdateDestroyAPIView):
 class JobCardListCreateView(generics.ListCreateAPIView):
     queryset = JobCard.objects.all()
     serializer_class = JobCardSerializer
-    permission_classes = [AllowAny]
+    # permission_classes = [IsAuthenticated, IsAdminOrEmployee]
 
 
     def create(self, request, *args, **kwargs):
@@ -55,5 +56,6 @@ class JobCardListCreateView(generics.ListCreateAPIView):
 class JobCardDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = JobCard.objects.all()
     serializer_class = JobCardSerializer
+    # permission_classes = [IsAuthenticated, IsAdminOrEmployee]
 
 

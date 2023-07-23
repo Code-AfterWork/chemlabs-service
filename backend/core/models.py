@@ -39,6 +39,8 @@ class Equipment(models.Model):
     def __str__(self):
         return self.serial_number
 
+# TODO
+# use ForeignKey for received by and requested by
 
 class JobCard(models.Model):
     jobcard_id = models.AutoField(primary_key=True)

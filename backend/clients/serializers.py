@@ -1,4 +1,4 @@
-from clients.models import Ticket
+from clients.models import Ticket, ErrorLog
 from rest_framework import serializers
 
 class  TicketCreateSerializer(serializers.ModelSerializer):
@@ -6,3 +6,10 @@ class  TicketCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ticket
         fields = '__all__'
+
+
+# for error logs
+class ErrorLogSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ErrorLog
+        fields = '__all__'        

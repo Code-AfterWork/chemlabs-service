@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, } from 'react-router-dom';
-import { Login } from './components/login';
+import { Login } from './components/Login';
 import { HomeScreen } from './screens/HomeScreen.js';
-import { Navigation } from './components/navigation';
-import { Logout } from './components/logout';
+import { Navigation } from './components/Navigation';
+import { Logout } from './components/Logout';
 import { RegisterUser } from './components/Registration';
 import { Footer } from './components/Footer.jsx';
 import { Dashboard } from './screens/dashboard.js';

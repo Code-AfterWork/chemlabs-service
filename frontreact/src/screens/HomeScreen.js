@@ -17,7 +17,7 @@ export const HomeScreen = () => {
 
   return (
     // <Container className="text-center">
-      <div>
+      <div className="Class" >
         <EquipmentSearch></EquipmentSearch>
       </div>
     // </Container>

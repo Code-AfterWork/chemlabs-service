@@ -14,6 +14,9 @@ urlpatterns = [
     path("", views.UserAPIView.as_view(), name="user-info"),
     path("profile/", views.UserProfileAPIView.as_view(), name="user-profile"),
     path("profile/avatar/", views.UserAvatarAPIView.as_view(), name="user-avatar"),
+
+    path("users/", views.UserListAPIView.as_view(), name='user-list'),
+    path("users/<int:pk>/", views.UserDetailAPIView.as_view(), name='user-detail'),
 ]
 
 

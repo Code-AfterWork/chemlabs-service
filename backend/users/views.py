@@ -8,7 +8,9 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth.models import Group
 
 from . import serializers
-from .models import Profile
+from .models import Profile, CustomUser
+
+from rest_framework import generics
 
 
 User = get_user_model()
@@ -23,7 +25,7 @@ class UserRegisterationAPIView(GenericAPIView):
         user = serializer.save()
 
         # Add user to the "clients" group
-        group = Group.objects.get(name="employees")
+        group = Group.objects.get(name="clients")
         user.groups.add(group)
 
         token = RefreshToken.for_user(user)
@@ -79,3 +81,16 @@ class UserAvatarAPIView(RetrieveUpdateAPIView):
 
     def get_object(self):
         return self.request.user.profile
+
+
+
+## get list of users
+class UserListAPIView(generics.ListCreateAPIView):
+    queryset = CustomUser.objects.all()
+    serializer_class = serializers.CustomUserSerializer
+    
+
+
+class UserDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = CustomUser.objects.all()
+    serializer_class = serializers.CustomUserSerializer    

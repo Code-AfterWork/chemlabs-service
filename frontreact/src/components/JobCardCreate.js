@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Button, Card, Form, Col, Row } from 'react-bootstrap';
-import '../App.css';
 
 export const JobCardCreate = () => {
   const [formData, setFormData] = useState({
@@ -301,7 +300,7 @@ export const JobCardCreate = () => {
         </Form.Group>
       </Row>
 
-      <label className="jobCardLabel">
+      <label className="jobCardLabel" style={{margin:"20px"}}>
         Uploaded Media:
         <input type="file" name="uploaded_media" onChange={handleFileChange} />
       </label>
