@@ -93,7 +93,7 @@ export const TicketCreate = () => {
   };
 
   return (
-    <Card style={{ border: 'light', margin: '15px' }}>
+    <Card style={{ margin: '15px' }}>
       <Form onSubmit={handleSubmit} style={{ margin: '20px' }}>
         <Row>
           <Form.Group as={Col} controlId="formSerialNumber">

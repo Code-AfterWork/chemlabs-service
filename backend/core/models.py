@@ -56,7 +56,7 @@ class Ticket(models.Model):
     assigned_updated_at = models.DateTimeField(null=True, blank=True)
     marked_complete_at = models.DateTimeField(null=True, blank=True)
     time_taken = models.DurationField(null=True, blank=True) 
-    turn_around = models.DurationField(null=True, blank=True)
+    turn_around = models.DurationField(null=True, blank=True) # self.turn_around = self.marked_complete_at - self.created_at
     created_at = models.DateTimeField(null=True, blank=True) 
 
     def __str__(self):
