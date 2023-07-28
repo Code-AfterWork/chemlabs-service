@@ -8,7 +8,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth.models import Group
 
 from . import serializers
-from .models import Profile, CustomUser
+from .models import CustomUser
 
 from rest_framework import generics
 
@@ -66,21 +66,6 @@ class UserAPIView(RetrieveUpdateAPIView):
     def get_object(self):
         return self.request.user
 
-class UserProfileAPIView(RetrieveUpdateAPIView):
-    queryset = Profile.objects.all()
-    serializer_class = serializers.ProfileSerializer
-    permission_classes = (IsAuthenticated,)
-
-    def get_object(self):
-        return self.request.user.profile
-
-class UserAvatarAPIView(RetrieveUpdateAPIView):
-    queryset = Profile.objects.all()
-    serializer_class = serializers.ProfileAvatarSerializer
-    permission_classes = (IsAuthenticated,)
-
-    def get_object(self):
-        return self.request.user.profile
 
 
 

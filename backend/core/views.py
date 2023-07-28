@@ -1,9 +1,8 @@
 from rest_framework import generics
 from rest_framework.permissions import BasePermission, IsAdminUser
-from .models import JobCard, Equipment,Institution
+from .models import Equipment,Institution, JobCard
 from clients.models import Ticket
-from .serializers import JobCardSerializer,  EquipmentListSerializer, InstitutionListSerializer
-from employees.serializers import TicketAssignserializer
+from .serializers import EquipmentListSerializer, InstitutionListSerializer
 from rest_framework.permissions import AllowAny, IsAuthenticated
 
 class IsAdminOrEmployee(BasePermission):
@@ -42,20 +41,20 @@ class EquipmentDetailView(generics.RetrieveUpdateDestroyAPIView):
 
 
 
-# List to get and edit job cards
-class JobCardListCreateView(generics.ListCreateAPIView):
-    queryset = JobCard.objects.all()
-    serializer_class = JobCardSerializer
-    # permission_classes = [IsAuthenticated, IsAdminOrEmployee]
+# # List to get and edit job cards
+# class JobCardListCreateView(generics.ListCreateAPIView):
+#     queryset = JobCard.objects.all()
+#     serializer_class = JobCardSerializer
+#     # permission_classes = [IsAuthenticated, IsAdminOrEmployee]
 
 
-    def create(self, request, *args, **kwargs):
-        request.data['created_by'] = request.user.id
-        return super().create(request, *args, **kwargs)
+#     def create(self, request, *args, **kwargs):
+#         request.data['created_by'] = request.user.id
+#         return super().create(request, *args, **kwargs)
 
-class JobCardDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = JobCard.objects.all()
-    serializer_class = JobCardSerializer
-    # permission_classes = [IsAuthenticated, IsAdminOrEmployee]
+# class JobCardDetailView(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = JobCard.objects.all()
+#     serializer_class = JobCardSerializer
+#     # permission_classes = [IsAuthenticated, IsAdminOrEmployee]
 
 

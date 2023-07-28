@@ -1,32 +1,25 @@
 from django.db import models
+from users.models import CustomUser
+from clients.models import Ticket
 from django.utils import timezone
 from django.conf import settings
-from users.models import CustomUser
-
-# from oauth2_provider.models import AbstractApplication
-# from django.utils.translation import gettext_lazy as _
-
-# opting to have all database definition code in one file
-# CREATE 4 TABLES
-# 1. EQUIPMENT
-# 2. INSTITUTION
-# 3. CHEM-LABS STAFF
-# 4. JOB_CARD
 
 class Institution(models.Model):
-    id = models.CharField(max_length=30, primary_key=True)
+    _id = models.AutoField(primary_key=True) # might decide to get the code form Sage
     region = models.CharField(max_length=30)
     name = models.CharField(max_length=30)
-    email_address = models.EmailField()
-    phone = models.IntegerField()
+    email = models.EmailField()
+    phone = models.IntegerField(null=True)
+    contact_person = models.TextField(blank=True) # or lab in charge
 
     def __str__(self):
         return self.name
 
 class Equipment(models.Model):
+    # _id=models.AutoField()
     institution = models.ForeignKey(Institution, on_delete=models.CASCADE, related_name='equipments')
-    equipment = models.CharField(max_length=30)
-    serial_number = models.CharField(max_length=30, primary_key=True)
+    equipment_name = models.CharField(max_length=30)
+    serial_number = models.CharField(max_length=50, primary_key=True, unique=True)
     install_date = models.DateField()
     contract_end = models.DateField()
     status = models.BooleanField()
@@ -35,20 +28,33 @@ class Equipment(models.Model):
     second_serv = models.DateField(null=True, blank=True)
     validation = models.BooleanField(null=True, blank=True)
     contract_type = models.CharField(max_length=30)
+     # Month when the last contract was renewed dynamic data/ counts down 1 year from that, frontend will handle
+    contract_renewal_month = models.DateField(blank=True)
+    # last time service was done, counts down 6 months from then/ frontend will handle the countdown
+    last_service = models.DateField(blank=True) 
 
     def __str__(self):
         return self.serial_number
 
-# TODO
-# use ForeignKey for received by and requested by
-
 class JobCard(models.Model):
-    jobcard_id = models.AutoField(primary_key=True)
+    CONTRACT_TYPE_CHOICES = (
+        ('comprehensive', 'Comprehensive'),
+        ('on_call', 'On-Call'), # essentialy no agreement, just call me whenever you need me
+        ('reagent', 'Reagent'),
+        ('standard', 'Standard'),
+        ('warranty', 'Warranty'),
+        ('break_down', 'Break Down'),
+    )
+
+    JOBCARD_TYPE_CHOICES = (
+    ('application', 'Application'),
+    ('service', 'Service'),
+    )
+
+    jobcard_id = models.AutoField(primary_key=True) # like normal id field, autoincrements
     institution = models.ForeignKey(Institution, on_delete=models.CASCADE)
     equipment = models.ForeignKey(Equipment, on_delete=models.CASCADE)
     received_by = models.CharField(max_length=30)
-    job_start_date = models.DateField()
-    job_end_date = models.DateField()
     requested_by = models.CharField(max_length=30)
     ok_checklist = models.CharField(max_length=30, null=True)
     faulty_checklist = models.CharField(max_length=30, null=True)
@@ -57,6 +63,12 @@ class JobCard(models.Model):
     total_cost = models.CharField(max_length=30)
     jobcard_created_at = models.DateTimeField(default=timezone.now)
     uploaded_media = models.FileField(upload_to='jobcards/', null=True, blank=True)
+    contract_type = models.CharField(choices=CONTRACT_TYPE_CHOICES, default='',  max_length=30)
+    jobcard_type=models.CharField(choices=JOBCARD_TYPE_CHOICES, default='service',  max_length=30)
+    ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE)
+    root_cause = models.TextField(blank=True)
+    comments = models.TextField(blank=True)
+    # commenting this before migrating solves the circular imports error
     created_by = models.ForeignKey(
         CustomUser,
         related_name="engineer_jobcards",
