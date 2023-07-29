@@ -1,4 +1,4 @@
-venv/
+# venv/
 media/
 frontreact/node_modules/
 

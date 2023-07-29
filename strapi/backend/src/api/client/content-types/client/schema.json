@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "clients",
+  "info": {
+    "singularName": "client",
+    "pluralName": "clients",
+    "displayName": "clients"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "email": {
+      "type": "email"
+    },
+    "password": {
+      "type": "password"
+    },
+    "equipment": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::equipment.equipment",
+      "mappedBy": "client"
+    }
+  }
+}

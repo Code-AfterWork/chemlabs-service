@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "equipments",
+  "info": {
+    "singularName": "equipment",
+    "pluralName": "equipments",
+    "displayName": "equipment"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "serial_number": {
+      "type": "string"
+    },
+    "client": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::client.client",
+      "inversedBy": "equipment"
+    }
+  }
+}
