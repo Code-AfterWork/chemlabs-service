@@ -1,6 +1,4 @@
 from django.db import models
-from users.models import CustomUser
-from clients.models import Ticket
 from django.utils import timezone
 from django.conf import settings
 
@@ -65,12 +63,11 @@ class JobCard(models.Model):
     uploaded_media = models.FileField(upload_to='jobcards/', null=True, blank=True)
     contract_type = models.CharField(choices=CONTRACT_TYPE_CHOICES, default='',  max_length=30)
     jobcard_type=models.CharField(choices=JOBCARD_TYPE_CHOICES, default='service',  max_length=30)
-    ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE)
+    ticket = models.ForeignKey('clients.Ticket', on_delete=models.CASCADE)
     root_cause = models.TextField(blank=True)
     comments = models.TextField(blank=True)
-    # commenting this before migrating solves the circular imports error
     created_by = models.ForeignKey(
-        CustomUser,
+        'users.CustomUser',
         related_name="engineer_jobcards",
         null=True,
         on_delete=models.SET_NULL

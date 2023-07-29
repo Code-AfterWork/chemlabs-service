@@ -1,9 +1,5 @@
 from django.db import models
-# from core.models import Equipment
 from django.conf import settings
-from users.models import CustomUser
-
-from core.models import Equipment
 
 class Ticket(models.Model):
 
@@ -20,13 +16,14 @@ class Ticket(models.Model):
     )
 
     _id= models.AutoField(primary_key=True) # not a fun of working with django's hidden fields
-    serial_number = models.ForeignKey(Equipment, on_delete=models.CASCADE, related_name='tickets')
+    serial_number = models.ForeignKey('core.Equipment', on_delete=models.CASCADE, related_name='tickets')
     title = models.CharField(max_length=30)
+    assigned_at=models.DateTimeField()
     description = models.CharField(max_length=30)
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='created_tickets')
     jobcard_type=models.CharField(choices=TICKET_TYPE_CHOICES, default='service', max_length=30)
     assigned_to = models.ForeignKey(
-        CustomUser,
+        'users.CustomUser',
         on_delete=models.CASCADE,
         related_name='assigned_tickets',
         null=True,
@@ -34,7 +31,10 @@ class Ticket(models.Model):
         to_field='email',  # Only accept Manager and Employee users
         limit_choices_to={'is_employee': True}  # Additional constraint to restrict to employees
     )
+    assigned_at=models.DateTimeField()
+
     status = models.CharField(choices=TICKET_STATUS_CHOICES, default='pending',  max_length=30)
+    completed_at = models.DateTimeField()
 
     def __str__(self):
         return self.title
