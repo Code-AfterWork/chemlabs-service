@@ -15,7 +15,7 @@ class Institution(models.Model):
 
 class Equipment(models.Model):
     # _id=models.AutoField()
-    institution = models.ForeignKey(Institution, on_delete=models.CASCADE, related_name='equipments')
+    institution = models.ForeignKey('core.Institution', on_delete=models.CASCADE, related_name='equipments')
     equipment_name = models.CharField(max_length=30)
     serial_number = models.CharField(max_length=50, primary_key=True, unique=True)
     install_date = models.DateField()
@@ -50,8 +50,8 @@ class JobCard(models.Model):
     )
 
     jobcard_id = models.AutoField(primary_key=True) # like normal id field, autoincrements
-    institution = models.ForeignKey(Institution, on_delete=models.CASCADE)
-    equipment = models.ForeignKey(Equipment, on_delete=models.CASCADE)
+    institution = models.ForeignKey('core.Institution', on_delete=models.CASCADE)
+    equipment = models.ForeignKey('core.Equipment', on_delete=models.CASCADE)
     received_by = models.CharField(max_length=30)
     requested_by = models.CharField(max_length=30)
     ok_checklist = models.CharField(max_length=30, null=True)

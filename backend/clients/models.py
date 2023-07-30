@@ -20,7 +20,7 @@ class Ticket(models.Model):
     title = models.CharField(max_length=30)
     assigned_at=models.DateTimeField()
     description = models.CharField(max_length=30)
-    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='created_tickets')
+    created_by = models.ForeignKey('users.CustomUser', on_delete=models.CASCADE, related_name='created_tickets')
     jobcard_type=models.CharField(choices=TICKET_TYPE_CHOICES, default='service', max_length=30)
     assigned_to = models.ForeignKey(
         'users.CustomUser',
@@ -29,7 +29,7 @@ class Ticket(models.Model):
         null=True,
         blank=True,
         to_field='email',  # Only accept Manager and Employee users
-        limit_choices_to={'is_employee': True}  # Additional constraint to restrict to employees
+        #limit_choices_to={'is_employee': True}  # Additional constraint to restrict to employees
     )
     assigned_at=models.DateTimeField()
 
