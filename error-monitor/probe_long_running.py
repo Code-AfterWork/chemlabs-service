@@ -78,8 +78,8 @@ if __name__ == '__main__':
 #     with open(filename, 'r') as f:
         
 #         # Email credentials
-#         mail_user = 'wiki@chem-labs.com'
-#         mail_password = 'PORT23closed.#'
+#         mail_user = 'wiki@mail.com'
+#         mail_password = 'password'
 
 #         facility = 'Coptic Mission'
 
@@ -111,10 +111,10 @@ if __name__ == '__main__':
 #             msg['To'] = email_to
 #             msg['Subject'] = "Log" + facility
 #             try:
-#                 smtp_server = smtplib.SMTP_SSL('mail.chem-labs.com', 465)
+#                 smtp_server = smtplib.SMTP_SSL('mail.mail.com', 465)
 #                 smtp_server.ehlo()
 #                 smtp_server.login(mail_user, mail_password)
-#                 smtp_server.sendmail('wiki@chem-labs.com', email_to, msg.as_string())
+#                 smtp_server.sendmail('wiki@mail.com', email_to, msg.as_string())
 #                 smtp_server.close()
 #                 result = f"{result}\n\nSearch results sent to {email_to}"
 #             except Exception as ex:
@@ -125,7 +125,7 @@ if __name__ == '__main__':
 
 # def main():
 #     filename = './monitor.log'
-#     email_to = 'it@chem-labs.com'
+#     email_to = 'it@mail.com'
 #     prev_latest_line = None
 #     while True:
 #         print(f"Sending email to: {email_to}")
